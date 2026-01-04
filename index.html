@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYNTHETIC UPLINK</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="crt-overlay"></div>
+    <div class="scanline"></div>
+
+    <div class="container">
+        <header>
+            <h1 class="glitch" data-text="SYNTHETIC UPLINK">SYNTHETIC UPLINK</h1>
+            <div class="status-bar">
+                <span class="status-item">SYSTEM: <span class="blink">ONLINE</span></span>
+                <span class="status-item">DATE: <span id="current-date">2026.01.01</span></span>
+            </div>
+        </header>
+
+        <main>
+            <div class="player-card">
+                <div class="section-label">LATEST UPLINK</div>
+                <div class="visualizer-container">
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                </div>
+
+                <div class="track-info">
+                    <h2 id="track-title-display">—</h2>
+                    <p class="track-title" id="track-filename-display">youtube</p>
+                </div>
+
+                <div class="youtube-embed">
+                    <iframe id="youtube-player" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div class="archive-section" style="margin-top: 30px; border: 1px solid var(--neon-cyan); padding: 20px; background: rgba(10, 15, 20, 0.9);">
+                <h3 style="color: var(--neon-cyan); font-family: 'Orbitron'; margin-bottom: 15px;">PAST TRANSMISSIONS</h3>
+                <div class="playlist-wrapper" style="max-height: 250px; overflow-y: auto;">
+                    <ul class="playlist" id="playlist-container" style="list-style: none;">
+                        <!-- Playlist items will be loaded here from playlist.json -->
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>EST. 2026 // NEURAL_LINK_ESTABLISHED</p>
+        </footer>
+    </div>
+
+    <script src="playlist.js"></script>
+
+    <script>
+    // Load tracks from the global variable defined in playlist.js
+    var tracks = (typeof DAILY_TECHNO_PLAYLIST !== 'undefined') ? DAILY_TECHNO_PLAYLIST : [];
+    var currentIndex = 0;
+
+    function extractYouTubeId(url) {
+        if (!url) return null;
+        // robust regex for various youtube formats
+        var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        var match = String(url).match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    function highlightCurrent() {
+        var playlistContainer = document.getElementById('playlist-container');
+        if (!playlistContainer) return;
+        var items = playlistContainer.getElementsByClassName('playlist-item');
+        for (var i = 0; i < items.length; i++) {
+            items[i].style.color = (i === currentIndex) ? 'var(--neon-pink)' : 'var(--text-color)';
+        }
+    }
+
+    function renderPlaylist() {
+        var playlistContainer = document.getElementById('playlist-container');
+        if (!playlistContainer) return;
+        playlistContainer.innerHTML = '';
+
+        for (var i = 0; i < tracks.length; i++) {
+            var track = tracks[i];
+            var li = document.createElement('li');
+            li.className = 'playlist-item';
+            li.style.cursor = 'pointer'; // Make sure cursor shows it's clickable
+
+            // Title + date label
+            var titleSpan = document.createElement('span');
+            titleSpan.className = 'playlist-title';
+            var label = track.title || 'UNTITLED';
+            if (track.date) {
+                label += ' [' + track.date + ']';
+            }
+            titleSpan.textContent = label;
+            
+            // Add click listener to the whole list item for easier clicking
+            (function(index){
+                li.addEventListener('click', function () {
+                    loadTrack(index);
+                });
+            })(i);
+
+            li.appendChild(titleSpan);
+            playlistContainer.appendChild(li);
+        }
+    }
+
+    function setMainTrackUI(track) {
+        var titleEl = document.getElementById('track-title-display');
+        var fileEl = document.getElementById('track-filename-display');
+
+        if (titleEl) titleEl.textContent = track && track.title ? track.title : '—';
+        if (fileEl) fileEl.textContent = track && track.date ? track.date : 'youtube';
+        
+        // Also update document title
+        if (track && track.title) {
+            document.title = "SYNTHETIC UPLINK // " + track.title;
+        }
+    }
+
+    function loadTrack(index) {
+        if (index < 0 || index >= tracks.length) return;
+        currentIndex = index;
+        var track = tracks[index];
+        var videoId = extractYouTubeId(track.link);
+
+        setMainTrackUI(track);
+        highlightCurrent();
+
+        var iframe = document.getElementById('youtube-player');
+        if (iframe && videoId) {
+            // Using the specific query params from your example
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?si=3bki7RpRxmTSLzZR&autoplay=1';
+        } else {
+             console.error("Could not extract video ID or find iframe");
+        }
+    }
+
+    // Wire UI once DOM is ready
+    window.addEventListener('load', function () {
+        // Update system date
+        var dateEl = document.getElementById('current-date');
+        if (dateEl) {
+            var now = new Date();
+            var yyyy = now.getFullYear();
+            var mm = String(now.getMonth() + 1).padStart(2, '0');
+            var dd = String(now.getDate()).padStart(2, '0');
+            dateEl.textContent = yyyy + '.' + mm + '.' + dd;
+        }
+
+        renderPlaylist();
+        if (tracks.length > 0) {
+            loadTrack(0);
+        }
+    });
+    </script>
+</body>
+</html>
