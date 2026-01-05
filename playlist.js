@@ -1,5 +1,10 @@
 var DAILY_TECHNO_PLAYLIST = [
     {
+        "title": "INFLUENCE ENGINE",
+        "link": "https://youtu.be/6dUgyjWkxMI?si=HELa3PuzgGKI_9o8",
+        "date": "2026.01.05"
+    },
+    {
         "title": "CONSENT TO CONTINUE",
         "link": "https://youtu.be/_3abUHMnn3M?si=1oGu7NM1t_tevsV4",
         "date": "2026.01.04"
