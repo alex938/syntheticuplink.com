@@ -1,5 +1,10 @@
 var DAILY_TECHNO_PLAYLIST = [
     {
+        "title": "BINARY SEA",
+        "link": "https://youtu.be/OCCmiuJV4g4?si=gupnKdnFl61aTRcX",
+        "date": "2026.01.06"
+    },
+    {
         "title": "INFLUENCE ENGINE",
         "link": "https://youtu.be/6dUgyjWkxMI?si=HELa3PuzgGKI_9o8",
         "date": "2026.01.05"
