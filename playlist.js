@@ -1,5 +1,10 @@
 var DAILY_TECHNO_PLAYLIST = [
     {
+        "title": "THE DIGITAL FRONTIER",
+        "link": "https://youtu.be/fje7IlNHmyQ?si=qHzjgQ1VEy0ZdsM7",
+        "date": "2026.01.08"
+    },
+    {
         "title": "BINARY SEA",
         "link": "https://youtu.be/OCCmiuJV4g4?si=gupnKdnFl61aTRcX",
         "date": "2026.01.06"
