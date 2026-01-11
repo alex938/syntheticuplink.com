@@ -1,5 +1,10 @@
 var DAILY_TECHNO_PLAYLIST = [
     {
+        "title": "BEYOND OUR TIME",
+        "link": "https://youtu.be/DW-cgb3VrF4?si=IjmyR-Fj4Tc15amp",
+        "date": "2026.01.11"
+    },
+    {
         "title": "THE DIGITAL FRONTIER",
         "link": "https://youtu.be/fje7IlNHmyQ?si=qHzjgQ1VEy0ZdsM7",
         "date": "2026.01.08"
@@ -35,5 +40,7 @@ var DAILY_TECHNO_PLAYLIST = [
         "date": "2025.12.27"
     }
 ];
+
+
 
 
