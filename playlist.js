@@ -1,5 +1,15 @@
 var DAILY_TECHNO_PLAYLIST = [
     {
+        "title": "BORROWED TIME",
+        "link": "https://youtu.be/hB0dJ5szuvc?si=it3VNHAClLZ5BMvS",
+        "date": "2026.01.16"
+    },
+    {
+        "title": "STILL FREE",
+        "link": "https://youtu.be/b47cRc3UzWQ?si=B4e4M4P8IFRb8hlV",
+        "date": "2026.01.14"
+    },
+    {
         "title": "BEYOND OUR TIME",
         "link": "https://youtu.be/DW-cgb3VrF4?si=IjmyR-Fj4Tc15amp",
         "date": "2026.01.11"
