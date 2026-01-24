@@ -1,5 +1,10 @@
 var DAILY_TECHNO_PLAYLIST = [
     {
+        "title": "LITTLE PIECE OF PEACE",
+        "link": "https://youtu.be/aB6j0Tb_4Wk?si=TuOnVDQIQYwYsJcw",
+        "date": "2026.01.24"
+    },  
+    {
         "title": "BORROWED TIME",
         "link": "https://youtu.be/hB0dJ5szuvc?si=it3VNHAClLZ5BMvS",
         "date": "2026.01.16"
