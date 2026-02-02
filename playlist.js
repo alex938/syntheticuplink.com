@@ -1,5 +1,10 @@
 var DAILY_TECHNO_PLAYLIST = [
     {
+        "title": "BUILT IN SILENCE",
+        "link": "https://youtu.be/lgN0_YzWYUM?si=m0XUTDkioYXns-DX",
+        "date": "2026.02.02"
+    },      
+    {
         "title": "LITTLE PIECE OF PEACE",
         "link": "https://youtu.be/aB6j0Tb_4Wk?si=TuOnVDQIQYwYsJcw",
         "date": "2026.01.24"
